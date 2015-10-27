@@ -12,10 +12,10 @@ public class Coordinate {
 		this.y = latToY(lat);
 	}
 	public int lonToX(Double Longitude) {
-		return (int) ((Longitude - Drawing.minLong) * Drawing.xScale);
+		return (int) ((Longitude - DrawWays.minLong) * DrawWays.xScale);
 	}
 
 	public int latToY(Double Latitude) {
-		return (int) (-(Latitude - Drawing.minLat) * Drawing.yScale);
+		return (int) (-(Latitude - DrawWays.minLat) * DrawWays.yScale);
 	}
 }

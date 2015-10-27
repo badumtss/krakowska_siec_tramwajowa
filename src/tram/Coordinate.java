@@ -1,6 +1,6 @@
 package tram;
 
-
+//klasa przechowuj¹ca wspó³rzêdne nodów oraz konwertuj¹ca je do wspó³rzêdnych na ekranie
 public class Coordinate {
 	int x,y;
 	double lat,lon;

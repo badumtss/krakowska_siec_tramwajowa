@@ -1,12 +1,8 @@
 package tram;
 
 import java.util.LinkedList;
-
+//klasa pojedynczej drogi
 public class Way {
-	
-	LinkedList<String> nodes = new LinkedList<String>();
-	int it;
-	Way(){
-		it=0;
-	}
+	//lista nazw(id) punktów zawartych w drodze
+	public LinkedList<String> nodes = new LinkedList<String>();
 }

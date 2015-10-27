@@ -4,17 +4,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
-
+// klasa rysuj¹ca pojedyncz¹ liniê przekazywan¹ jako string
 public class DrawRelation extends JFrame{
-	public final static int MapWidth = 1350, MapHeight = 700;
-	public static double maxLong = 20.1263, minLong = 19.8739, maxLat = 50.1043, minLat = 50.0117;
-	public static double xScale = MapWidth / (maxLong - minLong), yScale = MapHeight/ (maxLat - minLat);
 	public String number;
 	
 	public DrawRelation(String nr) {
 		number=nr;
 		setLayout(null);
-		setSize(MapWidth, MapHeight);
+		setSize(DrawWays.MapWidth, DrawWays.MapHeight);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -36,7 +33,7 @@ public void paint(Graphics g) {
 							x2 = p2.x;
 							y2 = p2.y;
 							g2d.drawLine(x1 + 30, y1 + 730, x2 + 30, y2 + 730);
-				}
+				}	
 			}
 		}	
 	}

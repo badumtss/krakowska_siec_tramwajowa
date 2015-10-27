@@ -8,12 +8,12 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.*;
 
-
+//klasa odczytuj¹ca dane z pliku OSM
 public class ParserXML {
 
-	public static HashMap<String, Node> nodes= new HashMap<String, Node>();
-	public static HashMap<String, Way> ways= new HashMap<String, Way>();
-	public static HashMap<String, Relation> relations= new HashMap<String, Relation>();
+	public static HashMap<String, Node> nodes= new HashMap<String, Node>(); //statyczna hashmapa z odczytanymi punktami
+	public static HashMap<String, Way> ways= new HashMap<String, Way>(); //statyczna hashmapa z odczytanymi drogami
+	public static HashMap<String, Relation> relations= new HashMap<String, Relation>(); //statyczna hashmapa z odczytanymi relacjami
 	public boolean nodeflag,wayflag,rel;
 	
 	ParserXML(String file){
@@ -75,7 +75,6 @@ public class ParserXML {
 					}	
 					if (qName.equalsIgnoreCase("nd")&&wayflag==true) {
 						ways.get(pid).nodes.add(attributes.getValue(0));
-						ways.get(pid).it++;
 					}
 					if ((!qName.equalsIgnoreCase("nd"))&&(!qName.equalsIgnoreCase("way"))){
 						wayflag=false;

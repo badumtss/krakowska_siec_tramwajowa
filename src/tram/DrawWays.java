@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 
-
+//klasa s³u¿¹ca do rysowania dróg(ways)
 public class DrawWays extends JFrame{
 	public final static int MapWidth = 1350, MapHeight = 700;
 	public static double maxLong = 20.1194, minLong = 19.8798, maxLat = 50.1032, minLat = 50.0109;

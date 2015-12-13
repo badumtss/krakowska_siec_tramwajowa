@@ -7,7 +7,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.*;
-
+import org.openstreetmap.gui.jmapviewer.Coordinate;
 //klasa odczytuj¹ca dane z pliku OSM
 public class ParserXML {
 
@@ -122,6 +122,7 @@ public class ParserXML {
 							rel==true&&
 							attributes.getValue(0).equalsIgnoreCase("to")){
 							relations.get(rid).to=attributes.getValue(1);
+							relations.get(rid).setDraw();
 							rel=false;
 					}
 						

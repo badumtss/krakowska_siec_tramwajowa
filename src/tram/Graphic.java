@@ -8,26 +8,20 @@ import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.openstreetmap.gui.jmapviewer.events.JMVCommandEvent;
 import org.openstreetmap.gui.jmapviewer.interfaces.JMapViewerEventListener;
-import org.openstreetmap.gui.jmapviewer.interfaces.TileLoader;
-import org.openstreetmap.gui.jmapviewer.interfaces.TileSource;
-import org.openstreetmap.gui.jmapviewer.tilesources.BingAerialTileSource;
-import org.openstreetmap.gui.jmapviewer.tilesources.MapQuestOpenAerialTileSource;
-import org.openstreetmap.gui.jmapviewer.tilesources.MapQuestOsmTileSource;
-import org.openstreetmap.gui.jmapviewer.tilesources.OsmTileSource;
+
 
 
 public class Graphic extends JFrame implements JMapViewerEventListener  {
@@ -84,28 +78,7 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
                 map().setDisplayToFitMapMarkers();
             }
         });
-        JComboBox<TileSource> tileSourceSelector = new JComboBox<>(new TileSource[] {
-                new OsmTileSource.Mapnik(),
-                new OsmTileSource.CycleMap(),
-                new BingAerialTileSource(),
-                new MapQuestOsmTileSource(),
-                new MapQuestOpenAerialTileSource() });
-        tileSourceSelector.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                map().setTileSource((TileSource) e.getItem());
-            }
-        });
-        JComboBox<TileLoader> tileLoaderSelector;
-        tileLoaderSelector = new JComboBox<>(new TileLoader[] {new OsmTileLoader(map())});
-        tileLoaderSelector.addItemListener(new ItemListener() {
 
-            public void itemStateChanged(ItemEvent e) {
-                map().setTileLoader((TileLoader) e.getItem());
-            }
-        });
-        map().setTileLoader((TileLoader) tileLoaderSelector.getSelectedItem());
-        panelTop.add(tileSourceSelector);
-        panelTop.add(tileLoaderSelector);
         final JCheckBox showMapMarker = new JCheckBox("Map markers visible");
         showMapMarker.setSelected(map().getMapMarkersVisible());
         showMapMarker.addActionListener(new ActionListener() {

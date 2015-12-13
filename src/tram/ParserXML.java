@@ -14,12 +14,13 @@ public class ParserXML {
 	public static HashMap<String, Node> nodes= new HashMap<String, Node>(); //statyczna hashmapa z odczytanymi punktami
 	public static HashMap<String, Way> ways= new HashMap<String, Way>(); //statyczna hashmapa z odczytanymi drogami
 	public static HashMap<String, Relation> relations= new HashMap<String, Relation>(); //statyczna hashmapa z odczytanymi relacjami
-	public boolean nodeflag,wayflag,rel;
+	public boolean nodeflag,wayflag,rel,relway;
 	
 	ParserXML(String file){
 		nodeflag=false;
 		wayflag=false;
 		rel=false;
+		relway=false;
 		readNodes(file);
 		readWays(file);
 		readRelations(file);
@@ -105,8 +106,13 @@ public class ParserXML {
 					}
 					if (qName.equalsIgnoreCase("member")&&
 						attributes.getValue(0).equalsIgnoreCase("way")&&
-						attributes.getValue(2).equalsIgnoreCase("")){
+						attributes.getValue(2).equalsIgnoreCase("")&&relway==false){
 						relations.get(rid).addWay(attributes.getValue(1));
+					}
+					if (qName.equalsIgnoreCase("member")&&
+							attributes.getValue(0).equalsIgnoreCase("node")&&
+							attributes.getValue(2).equalsIgnoreCase("stop_exit_only")){
+						relway=true;
 					}
 					if (qName.equalsIgnoreCase("tag")&&
 						rel==true&&
@@ -124,6 +130,7 @@ public class ParserXML {
 							relations.get(rid).to=attributes.getValue(1);
 							relations.get(rid).setDraw();
 							rel=false;
+							relway=false;
 					}
 						
 				}

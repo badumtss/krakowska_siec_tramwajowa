@@ -14,9 +14,11 @@ public class DrawThread extends Thread {
 	}
 	// opóźnianie i pętla rysująca
     public void drawRel(Relation rel){
+    	int delay=1;
     	int nr=rel.takeFree();
-    	try{for(;drawTram(rel,nr)==1;){    		
-  		    Thread.sleep(100);}  
+    	try{for(;delay!=0;){    		
+  		    delay=drawTram(rel,nr);
+    		Thread.sleep(delay);}  
   		  }catch(Exception e){
   			  System.out.print(e);
   		  }
@@ -24,6 +26,7 @@ public class DrawThread extends Thread {
     	  
 //rysowanie linii id�c list� nod�w po kolei
     public int drawTram(Relation rel,int tramNr){
+    	int delay=1;
     	if(rel.nodes.getLast().equals(rel.drawings.get(tramNr).currDraw)){
     		map.removeMapMarker(rel.drawings.get(tramNr).marker);
     		rel.resetDraw(tramNr);
@@ -31,10 +34,11 @@ public class DrawThread extends Thread {
     	}else{
 	    	if(map.getMapMarkerList().contains(rel.drawings.get(tramNr).marker)){
 	    		map.removeMapMarker(rel.drawings.get(tramNr).marker);
-	    		rel.nextDraw(tramNr);
+	    		delay=Speed.getDelay(rel.speed,rel.nextDraw(tramNr));
+	    		
 	    	}
 	    	map.addMapMarker(rel.drawings.get(tramNr).marker);
-	    	return 1;
+	    	return delay;
     	}   	
     }
    

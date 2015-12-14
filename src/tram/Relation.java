@@ -1,37 +1,41 @@
 package tram;
 
-import java.util.LinkedList;
 
-import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
+import java.util.LinkedList;
 
 public class Relation {
 	
-	public String nr,from,to;//nr linii, sk¹d, dok¹d
-	public LinkedList<String> nodes;//lista nazw(id) nodów zawartych w relacji
-	public String currDraw; //id obecnie rysowanego noda
-	public int currDrawIt;	//iterator po liœcie nodów
-	public MapMarkerDot marker; //alkualnie narysowany znaczek
+	public String nr,from,to;//nr linii, skï¿½d, dokï¿½d
+	public LinkedList<String> nodes;//lista nazw(id) nodï¿½w zawartych w relacji
+	public LinkedList<TramDraw> drawings;
 	
 	Relation(){
 		nodes=new LinkedList<String>();
+		drawings= new LinkedList<TramDraw>();
 	}
 	public void addWay(String way){
-		nodes.addAll(ParserXML.ways.get(way).nodes); //dodanie drogi w postaci listy nodów
+		nodes.addAll(ParserXML.ways.get(way).nodes); //dodanie drogi w postaci listy nodï¿½w
 	}
-	public void setDraw(){//ustawienie pocz¹tkowe (w konstruktorze nie da rady bo na pocz¹tku nie ma nodów)
-		currDraw=nodes.getFirst();
-		marker=new MapMarkerDot(nr,ParserXML.nodes.get(currDraw).coord);
-		currDrawIt=0;
+	public void addDraw(){
+		drawings.add(new TramDraw(nodes,nr));
 	}
-	public void resetDraw(){// reset trasy
-		currDraw=nodes.getFirst();
-		marker.setCoordinate(ParserXML.nodes.get(currDraw).coord);
-		currDrawIt=0;
+	public int takeFree(){
+		int j=0;
+		for(TramDraw i : drawings){
+			if (i.isFree){
+				i.isFree=false;
+				return j;
+			}
+			j++;
+		}
+		addDraw();
+		return drawings.size()-1;
 	}
-	public void nextDraw(){// zmiana noda przy rysowaniu na kolejny
-		currDrawIt++;
-		currDraw=nodes.get(currDrawIt);
-		marker.setCoordinate(ParserXML.nodes.get(currDraw).coord);
-		
+	public void resetDraw(int nr){
+		drawings.get(nr).resetDraw(nodes);
 	}
+	public void nextDraw(int nr){
+		drawings.get(nr).nextDraw(nodes);
+	}
+
 }

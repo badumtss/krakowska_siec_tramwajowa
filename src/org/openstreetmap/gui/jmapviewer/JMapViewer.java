@@ -245,7 +245,7 @@ public class JMapViewer extends JPanel implements TileLoaderListener {
      * Sets the displayed map pane and zoom level so that all chosen map elements are
      * visible.
      */
-    public void setDisplayToFitMapElements(boolean markers, boolean rectangles, boolean polygons) {
+    public synchronized void setDisplayToFitMapElements(boolean markers, boolean rectangles, boolean polygons) {
         int nbElemToCheck = 0;
         if (markers && mapMarkerList != null)
             nbElemToCheck += mapMarkerList.size();
@@ -514,7 +514,7 @@ public class JMapViewer extends JPanel implements TileLoaderListener {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    protected synchronized void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         int iMove = 0;
@@ -864,17 +864,17 @@ public class JMapViewer extends JPanel implements TileLoaderListener {
      * @see #addMapMarker(MapMarker)
      * @see #getMapMarkerList()
      */
-    public void setMapMarkerVisible(boolean mapMarkersVisible) {
+    public synchronized void setMapMarkerVisible(boolean mapMarkersVisible) {
         this.mapMarkersVisible = mapMarkersVisible;
         repaint();
     }
 
-    public void setMapMarkerList(List<MapMarker> mapMarkerList) {
+    public synchronized void setMapMarkerList(List<MapMarker> mapMarkerList) {
         this.mapMarkerList = mapMarkerList;
         repaint();
     }
 
-    public List<MapMarker> getMapMarkerList() {
+    public synchronized List<MapMarker> getMapMarkerList() {
         return mapMarkerList;
     }
 
@@ -896,17 +896,17 @@ public class JMapViewer extends JPanel implements TileLoaderListener {
         return mapPolygonList;
     }
 
-    public void addMapMarker(MapMarker marker) {
+    public synchronized void addMapMarker(MapMarker marker) {
         mapMarkerList.add(marker);
         repaint();
     }
 
-    public void removeMapMarker(MapMarker marker) {
+    public synchronized void removeMapMarker(MapMarker marker) {
         mapMarkerList.remove(marker);
         repaint();
     }
 
-    public void removeAllMapMarkers() {
+    public synchronized void removeAllMapMarkers() {
         mapMarkerList.clear();
         repaint();
     }

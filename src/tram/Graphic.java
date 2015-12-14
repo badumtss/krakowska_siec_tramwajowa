@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -101,7 +102,6 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
         final JCheckBox showZoomControls = new JCheckBox("Show zoom controls");
         showZoomControls.setSelected(map().getZoomContolsVisible());
         showZoomControls.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 map().setZoomContolsVisible(showZoomControls.isSelected());
             }
@@ -136,7 +136,16 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
                 }
             }
         });
-        new DrawWays(map());//rysowanie torów
+        JButton spawn = new JButton("spawn random tram");// randomowy tramwaj
+        spawn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	Random gen=new Random();
+            	DrawThread t=new DrawThread(ParserXML.getRelByInt(gen.nextInt(ParserXML.relations.size()-1)),map());
+            	t.start();
+            }
+        });
+        panelBottom.add(spawn);
+        new DrawWays(map());//rysowanie torï¿½w
         this.setVisible(true);
     }
 
@@ -144,23 +153,6 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
         return treeMap.getViewer();
     }
 
-
-//rysowanie linii id¹c list¹ nodów po kolei
-    public void drawTram(Relation tram){
-    	if(tram.nodes.getLast().equals(tram.currDraw)){
-    		map().removeMapMarker(tram.marker);
-    		tram.resetDraw();
-    	}else{
-	    	if(map().getMapMarkerList().contains(tram.marker)){
-	    		map().removeMapMarker(tram.marker);
-	    		tram.nextDraw();
-	    	}
-	    	map().addMapMarker(tram.marker);	
-    	}
-    	
-    	
-    	
-    }
     private void updateZoomParameters() {
         if (mperpLabelValue != null)
             mperpLabelValue.setText(String.format("%s", map().getMeterPerPixel()));

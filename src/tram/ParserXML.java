@@ -8,7 +8,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.*;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
-//klasa odczytuj¹ca dane z pliku OSM
+//klasa odczytujï¿½ca dane z pliku OSM
 public class ParserXML {
 
 	public static HashMap<String, Node> nodes= new HashMap<String, Node>(); //statyczna hashmapa z odczytanymi punktami
@@ -128,7 +128,7 @@ public class ParserXML {
 							rel==true&&
 							attributes.getValue(0).equalsIgnoreCase("to")){
 							relations.get(rid).to=attributes.getValue(1);
-							relations.get(rid).setDraw();
+							relations.get(rid).addDraw();
 							rel=false;
 							relway=false;
 					}
@@ -140,6 +140,15 @@ public class ParserXML {
 			       e.printStackTrace();
 			     }
 	}
-	
+
+	public static Relation getRelByInt(int i){
+		return relations.get(relations.keySet().toArray()[i]);
+	}
+	public static Node getNodByInt(int i){
+		return nodes.get(nodes.keySet().toArray()[i]);
+	}
+	public static Way getWayByInt(int i){
+		return ways.get(ways.keySet().toArray()[i]);
+	}
 	
 }

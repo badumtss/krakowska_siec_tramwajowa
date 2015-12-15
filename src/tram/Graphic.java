@@ -36,6 +36,8 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
 
     private final JLabel mperpLabelName;
     private final JLabel mperpLabelValue;
+    private final JLabel clockLabel;
+
 
     public Graphic() {
         super("Trams");
@@ -60,7 +62,8 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
 
         zoomLabel = new JLabel("Zoom: ");
         zoomValue = new JLabel(String.format("%s", map().getZoom()));
-
+        ClockThread.panel=panelTop;
+        clockLabel= new JLabel("Time: ");
         add(panel, BorderLayout.NORTH);
         add(helpPanel, BorderLayout.SOUTH);
         panel.setLayout(new BorderLayout());
@@ -114,7 +117,8 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
         panelTop.add(zoomValue);
         panelTop.add(mperpLabelName);
         panelTop.add(mperpLabelValue);
-
+        panelTop.add(clockLabel);
+        
         add(treeMap, BorderLayout.CENTER);
         
         map().addMouseListener(new MouseAdapter() {

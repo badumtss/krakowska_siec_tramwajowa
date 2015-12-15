@@ -68,7 +68,9 @@ public class ParserXML {
 				String pid="0";
 				public void startElement(String uri, String localName,String qName, 
 		                Attributes attributes) throws SAXException {
-					if (qName.equalsIgnoreCase("way")) {
+					if (qName.equalsIgnoreCase("way")&&
+						!attributes.getValue(0).equalsIgnoreCase("-1061451")&&
+						!attributes.getValue(0).equalsIgnoreCase("-1061868")) {
 						Way pway=new Way();
 						pid=attributes.getValue(0);
 						ways.put(pid,pway);
@@ -106,7 +108,10 @@ public class ParserXML {
 					}
 					if (qName.equalsIgnoreCase("member")&&
 						attributes.getValue(0).equalsIgnoreCase("way")&&
-						attributes.getValue(2).equalsIgnoreCase("")&&relway==false){
+						(attributes.getValue(2).equalsIgnoreCase("")||
+						 attributes.getValue(2).equalsIgnoreCase("forward"))&&
+						!attributes.getValue(1).equalsIgnoreCase("-1061451")&&
+						!attributes.getValue(1).equalsIgnoreCase("-1061868")&&relway==false){
 						relations.get(rid).addWay(attributes.getValue(1));
 					}
 					if (qName.equalsIgnoreCase("member")&&

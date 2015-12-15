@@ -18,7 +18,8 @@ public class DrawThread extends Thread {
     	int nr=rel.takeFree();
     	try{for(;delay!=0;){    		
   		    delay=drawTram(rel,nr);
-    		Thread.sleep(delay);}  
+    		Thread.sleep(delay);
+    		}  
   		  }catch(Exception e){
   			  System.out.print(e);
   		  }

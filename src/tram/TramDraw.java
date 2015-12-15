@@ -14,7 +14,7 @@ public class TramDraw {
 	public MapMarkerDot marker; //alkualnie narysowany znaczek
 	public boolean isFree;
 	public Style style;
-	public Color color=Color.blue;
+	public Color color=Color.orange;
 	
 	public TramDraw(LinkedList<String> nodes, String nr){//konstruktor
 		currDraw=nodes.getFirst();	

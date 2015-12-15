@@ -7,14 +7,14 @@ import java.util.LinkedList;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import org.openstreetmap.gui.jmapviewer.Style;
-//klasa reprezentująca poszczególne markery dla relacjii
+//klasa reprezentujÄ…ca poszczegĂłlne markery dla relacjii
 public class TramDraw {
 	public String currDraw; //id obecnie rysowanego noda
-	public Integer currDrawIt;	//iterator po liście nod�w
+	public Integer currDrawIt;	//iterator po liĹ›cie nodďż˝w
 	public MapMarkerDot marker; //alkualnie narysowany znaczek
 	public boolean isFree;
 	public Style style;
-	public Color color=Color.orange;
+	public Color color=Color.yellow;
 	
 	public TramDraw(LinkedList<String> nodes, String nr){//konstruktor
 		currDraw=nodes.getFirst();	
@@ -39,6 +39,10 @@ public class TramDraw {
 		currDraw=nodes.get(currDrawIt);
 		i[1]=ParserXML.nodes.get(currDraw).coord;
 		marker.setCoordinate(ParserXML.nodes.get(currDraw).coord);
+		if (currDrawIt > (nodes.size()/5)) style.setBackColor(Color.orange);
+		if (currDrawIt > (2*nodes.size()/5)) style.setBackColor(Color.red);
+		if (currDrawIt > (3*nodes.size()/5)) style.setBackColor(Color.orange);
+		if (currDrawIt > (4*nodes.size()/5)) style.setBackColor(color);
 		return i;
 	}
 }

@@ -11,14 +11,16 @@ import java.awt.event.ActionListener;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.*;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.text.html.parser.Parser;
 
 import org.openstreetmap.gui.jmapviewer.events.JMVCommandEvent;
 import org.openstreetmap.gui.jmapviewer.interfaces.JMapViewerEventListener;
@@ -140,15 +142,51 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
                 }
             }
         });
-        JButton spawn = new JButton("spawn random tram");// randomowy tramwaj
+
+        JSpinner spinner1 = new JSpinner();
+        SpinnerDateModel spinnermodel = new SpinnerDateModel();
+        spinnermodel.setCalendarField(Calendar.MINUTE);
+        spinner1.setModel(spinnermodel);
+        spinner1.setEditor(new JSpinner.DateEditor(spinner1 , "hh:mm:ss"));
+
+        JButton spawn = new JButton("Start");
         spawn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	Random gen=new Random();
-            	DrawThread t=new DrawThread(ParserXML.getRelByInt(gen.nextInt(ParserXML.relations.size()-1)),map());
-            	t.start();
+//                while(true)
+//                {
+//                    LocalTime time = LocalTime.now();
+//                }
+//                for(int i=0; i<ParserXML.relations.size(); i++)
+//                {
+                    DrawThread t = new DrawThread((ParserXML.relations.get("14")), map());
+                    t.start();
+
+                Calendar cal = Calendar.getInstance();
+                cal.setTime((Date) spinner1.getValue());
+
+                int hours = cal.get(Calendar.HOUR_OF_DAY);
+                int minutes = cal.get(Calendar.MINUTE);
+                int ampm = cal.get(Calendar.AM_PM);
+
+                int intensity = 1; //0 - wczesnie rano i pozno w nocy; 2 - godziny szczytu; 1 - pozostale
+
+                if((hours < 6 && ampm == 0) || (hours >= 7 && ampm == 1))
+                    intensity = 0;
+
+                else if((hours >=6 && hours < 9 && ampm ==0) || (hours >= 2 && hours < 7 && ampm == 1))
+                    intensity = 2;
+
+
+
+//            	Random gen=new Random();
+//            	DrawThread t=new DrawThread(ParserXML.getRelByInt(gen.nextInt(ParserXML.relations.size()-1)),map());
+//            	t.start();
             }
         });
+
+        panelBottom.add(spinner1);
         panelBottom.add(spawn);
+
         new DrawWays(map());//rysowanie tor�w
         this.setVisible(true);
     }

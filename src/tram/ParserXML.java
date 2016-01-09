@@ -15,7 +15,7 @@ public class ParserXML {
 	public static HashMap<String, Way> ways= new HashMap<String, Way>(); //statyczna hashmapa z odczytanymi drogami
 	public static HashMap<String, Relation> relations= new HashMap<String, Relation>(); //statyczna hashmapa z odczytanymi relacjami
 	public boolean nodeflag,wayflag,rel,relway;
-	
+
 	ParserXML(String file){
 		nodeflag=false;
 		wayflag=false;
@@ -34,8 +34,8 @@ public class ParserXML {
 			DefaultHandler handler = new DefaultHandler() {
 				public void startDocument(){};
 				String nid="0";
-				public void startElement(String uri, String localName,String qName, 
-		                Attributes attributes) throws SAXException {
+				public void startElement(String uri, String localName,String qName,
+										 Attributes attributes) throws SAXException {
 					if (qName.equalsIgnoreCase("node")){
 						Node pnod = new Node();
 						pnod.coord=new Coordinate(Double.parseDouble(attributes.getValue("lat")),Double.parseDouble(attributes.getValue("lon")));
@@ -44,20 +44,20 @@ public class ParserXML {
 						nodeflag=true;
 					}
 					if (qName.equalsIgnoreCase("tag")&&nodeflag==true&&
-						attributes.getValue(0).equalsIgnoreCase("name")){
+							attributes.getValue(0).equalsIgnoreCase("name")){
 						nodes.get(nid).name=attributes.getValue(1);
 						nodes.get(nid).stop=true;
 						nodeflag=false;
 					}
-					else nodeflag=false;			
+					else nodeflag=false;
 				}
 			};
 			saxParser.parse(file, handler);
 		} catch (Exception e) {
-		       e.printStackTrace();
-		     }
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void readWays(String file){
 		try {
 			SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -66,16 +66,16 @@ public class ParserXML {
 			DefaultHandler handler = new DefaultHandler() {
 				public void startDocument(){};
 				String pid="0";
-				public void startElement(String uri, String localName,String qName, 
-		                Attributes attributes) throws SAXException {
+				public void startElement(String uri, String localName,String qName,
+										 Attributes attributes) throws SAXException {
 					if (qName.equalsIgnoreCase("way")&&
-						!attributes.getValue(0).equalsIgnoreCase("-1061451")&&
-						!attributes.getValue(0).equalsIgnoreCase("-1061868")) {
+							!attributes.getValue(0).equalsIgnoreCase("-1061451")&&
+							!attributes.getValue(0).equalsIgnoreCase("-1061868")) {
 						Way pway=new Way();
 						pid=attributes.getValue(0);
 						ways.put(pid,pway);
 						wayflag=true;
-					}	
+					}
 					if (qName.equalsIgnoreCase("nd")&&wayflag==true) {
 						ways.get(pid).nodes.add(attributes.getValue(0));
 					}
@@ -86,10 +86,10 @@ public class ParserXML {
 			};
 			saxParser.parse(file, handler);
 		} catch (Exception e) {
-		       e.printStackTrace();
-		     }
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void readRelations(String file){
 		try {
 			SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -97,22 +97,20 @@ public class ParserXML {
 
 			DefaultHandler handler = new DefaultHandler() {
 				public void startDocument(){};
-				String rid;
-				public void startElement(String uri, String localName,String qName, 
-						Attributes attributes) throws SAXException {
+				Relation prel;
+				public void startElement(String uri, String localName,String qName,
+										 Attributes attributes) throws SAXException {
 					if (qName.equalsIgnoreCase("relation")){
-						Relation prel=new Relation();
-						rid=attributes.getValue(0);
-						relations.put(rid,prel);
+						prel=new Relation();
 						rel=true;
 					}
 					if (qName.equalsIgnoreCase("member")&&
-						attributes.getValue(0).equalsIgnoreCase("way")&&
-						(attributes.getValue(2).equalsIgnoreCase("")||
-						 attributes.getValue(2).equalsIgnoreCase("forward"))&&
-						!attributes.getValue(1).equalsIgnoreCase("-1061451")&&
-						!attributes.getValue(1).equalsIgnoreCase("-1061868")&&relway==false){
-						relations.get(rid).addWay(attributes.getValue(1));
+							attributes.getValue(0).equalsIgnoreCase("way")&&
+							(attributes.getValue(2).equalsIgnoreCase("")||
+									attributes.getValue(2).equalsIgnoreCase("forward"))&&
+							!attributes.getValue(1).equalsIgnoreCase("-1061451")&&
+							!attributes.getValue(1).equalsIgnoreCase("-1061868")&&relway==false){
+						prel.addWay(attributes.getValue(1));
 					}
 					if (qName.equalsIgnoreCase("member")&&
 							attributes.getValue(0).equalsIgnoreCase("node")&&
@@ -120,30 +118,34 @@ public class ParserXML {
 						relway=true;
 					}
 					if (qName.equalsIgnoreCase("tag")&&
-						rel==true&&
-						attributes.getValue(0).equalsIgnoreCase("ref")){
-						relations.get(rid).nr=attributes.getValue(1);
+							rel==true&&
+							attributes.getValue(0).equalsIgnoreCase("ref")){
+						prel.nr=attributes.getValue(1);
 					}
 					if (qName.equalsIgnoreCase("tag")&&
 							rel==true&&
 							attributes.getValue(0).equalsIgnoreCase("from")){
-							relations.get(rid).from=attributes.getValue(1);
+						prel.from=attributes.getValue(1);
 					}
 					if (qName.equalsIgnoreCase("tag")&&
 							rel==true&&
 							attributes.getValue(0).equalsIgnoreCase("to")){
-							relations.get(rid).to=attributes.getValue(1);
-							relations.get(rid).addDraw();
-							rel=false;
-							relway=false;
+						prel.to=attributes.getValue(1);
+						prel.addDraw();
+						if(relations.containsKey(prel.nr)){
+							relations.put("-"+prel.nr, prel);
+						}else
+							relations.put(prel.nr, prel);
+						rel=false;
+						relway=false;
 					}
-						
+
 				}
 			};
 			saxParser.parse(file, handler);
 		} catch (Exception e) {
-			       e.printStackTrace();
-			     }
+			e.printStackTrace();
+		}
 	}
 
 	public static Relation getRelByInt(int i){
@@ -155,5 +157,5 @@ public class ParserXML {
 	public static Way getWayByInt(int i){
 		return ways.get(ways.keySet().toArray()[i]);
 	}
-	
+
 }

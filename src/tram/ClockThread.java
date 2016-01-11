@@ -13,7 +13,7 @@ import org.openstreetmap.gui.jmapviewer.JMapViewer;
 public class ClockThread extends Thread{
 	public static LocalTime thisSec=LocalTime.now();//tutaj mo¿na ustawiæ sobie godzinê np NOON zamiast now
 	public static JPanel panel;
-    public ArrayList<DrawThread> threads=new ArrayList<DrawThread>();
+    public static ArrayList<DrawThread> threads=new ArrayList<DrawThread>();
     JLabel clockLabelVal=new JLabel(String.format("%s",thisSec));
     Schedule schedule;
     JMapViewer map;
@@ -53,17 +53,7 @@ public class ClockThread extends Thread{
 			e.printStackTrace();
 		}
 	}
-	public int getIntensity(){
-		int hours=thisSec.getHour();
-        int intensity = 1; //0 - wczesnie rano i pozno w nocy; 2 - godziny szczytu; 1 - pozostale
-
-        if((hours < 6 ) || (hours >= 19))
-            intensity = 0;
-
-        else if((hours >=6 && hours < 9 ) || (hours >= 14 && hours < 19))
-            intensity = 2;
-        return intensity;
-	}
+	
 	public void stopThreads(){
         for(int i=0;i<threads.size();i++){
        	 

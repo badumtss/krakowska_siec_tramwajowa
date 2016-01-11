@@ -174,7 +174,6 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
                 c.stopThreads();
                 c.removeEmptythreads();
 
-                //map().removeAllMapMarkers();
             }
         });
 

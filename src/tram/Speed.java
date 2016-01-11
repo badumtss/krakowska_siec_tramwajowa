@@ -5,8 +5,8 @@ import org.openstreetmap.gui.jmapviewer.Coordinate;
 public class Speed {
 	int speed=10;//m per s
 	
-	static int getDelay(int sp,Coordinate[] n1){
-		double delay=Math.ceil((distance(n1)/sp)*1000);
+	static int getDelay(double sp,Coordinate[] n1){
+		double delay=Math.ceil((distance(n1)/sp)*0.28*1000);
 		delay++;
 		return (int)delay;
 	}

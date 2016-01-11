@@ -29519,5 +29519,237 @@
     <tag k='to' v='Krowodrza Górka' />
     <tag k='type' v='route' />
   </relation>
-  
+  <relation id='-1093105' visible='true'>
+    <member type='relation' ref='-1093056' role='' />
+    <member type='relation' ref='-1093055' role='' />
+    <tag k='name' v='Tram 1' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='1' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093106' visible='true'>
+    <member type='relation' ref='-1093058' role='' />
+    <member type='relation' ref='-1093057' role='' />
+    <tag k='name' v='Tram 2' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='2' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093107' visible='true'>
+    <member type='relation' ref='-1093060' role='' />
+    <member type='relation' ref='-1093059' role='' />
+    <tag k='name' v='Tram 3' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='3' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093108' visible='true'>
+    <member type='relation' ref='-1093062' role='' />
+    <member type='relation' ref='-1093061' role='' />
+    <tag k='name' v='Tram 4' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='4' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093109' visible='true'>
+    <member type='relation' ref='-1093064' role='' />
+    <member type='relation' ref='-1093063' role='' />
+    <tag k='name' v='Tram 5' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='5' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093110' visible='true'>
+    <member type='relation' ref='-1093065' role='' />
+    <member type='relation' ref='-1093066' role='' />
+    <tag k='name' v='Tram 6' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='6' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093111' visible='true'>
+    <member type='relation' ref='-1093069' role='' />
+    <member type='relation' ref='-1093070' role='' />
+    <tag k='name' v='Tram 8' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='8' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093112' visible='true'>
+    <member type='relation' ref='-1093071' role='' />
+    <member type='relation' ref='-1093072' role='' />
+    <tag k='name' v='Tram 9' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='9' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093113' visible='true'>
+    <member type='relation' ref='-1093074' role='' />
+    <member type='relation' ref='-1093073' role='' />
+    <tag k='name' v='Tram 10' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='10' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093114' visible='true'>
+    <member type='relation' ref='-1093078' role='' />
+    <member type='relation' ref='-1093077' role='' />
+    <tag k='name' v='Tram 13' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='13' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093115' visible='true'>
+    <member type='relation' ref='-1093080' role='' />
+    <member type='relation' ref='-1093079' role='' />
+    <tag k='name' v='Tram 14' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='14' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093116' visible='true'>
+    <member type='relation' ref='-1093082' role='' />
+    <member type='relation' ref='-1093081' role='' />
+    <tag k='name' v='Tram 16' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='16' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093117' visible='true'>
+    <member type='relation' ref='-1093083' role='' />
+    <member type='relation' ref='-1093084' role='' />
+    <tag k='name' v='Tram 18' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='18' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093118' visible='true'>
+    <member type='relation' ref='-1093085' role='' />
+    <member type='relation' ref='-1093086' role='' />
+    <tag k='name' v='Tram 20' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='20' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093119' visible='true'>
+    <member type='relation' ref='-1093088' role='' />
+    <member type='relation' ref='-1093087' role='' />
+    <tag k='name' v='Tram 21' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='21' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093120' visible='true'>
+    <member type='relation' ref='-1093089' role='' />
+    <member type='relation' ref='-1093090' role='' />
+    <tag k='name' v='Tram 22' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='22' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093121' visible='true'>
+    <member type='relation' ref='-1093091' role='' />
+    <member type='relation' ref='-1093092' role='' />
+    <tag k='name' v='Tram 23' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='23' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093122' visible='true'>
+    <member type='relation' ref='-1093094' role='' />
+    <member type='relation' ref='-1093093' role='' />
+    <tag k='name' v='Tram 24' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='24' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093123' visible='true'>
+    <member type='relation' ref='-1093095' role='' />
+    <member type='relation' ref='-1093096' role='' />
+    <tag k='description' v='Krakowski Szybki Tramwaj' />
+    <tag k='name' v='Tram 50' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='50' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093124' visible='true'>
+    <member type='relation' ref='-1093099' role='' />
+    <member type='relation' ref='-1093100' role='' />
+    <tag k='name' v='Tram 62 (nocny)' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='62' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093125' visible='true'>
+    <member type='relation' ref='-1093102' role='' />
+    <member type='relation' ref='-1093101' role='' />
+    <tag k='name' v='Tram 64 (nocny)' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='64' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093126' visible='true'>
+    <member type='relation' ref='-1093104' role='' />
+    <member type='relation' ref='-1093103' role='' />
+    <tag k='name' v='Tram 69 (nocny)' />
+    <tag k='network' v='Komunikacja Miejska w Krakowie' />
+    <tag k='operator' v='MPK Kraków' />
+    <tag k='ref' v='69' />
+    <tag k='route_master' v='tram' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='-1093127' visible='true'>
+    <member type='way' ref='-1096317' role='outer' />
+    <member type='way' ref='-1096321' role='outer' />
+    <tag k='addr:street' v='Aleja Solidarności' />
+    <tag k='area' v='yes' />
+    <tag k='bench' v='yes' />
+    <tag k='name' v='Przystanek tramwajowy pl. Centralny' />
+    <tag k='public_transport' v='platform' />
+    <tag k='railway' v='platform' />
+    <tag k='shelter' v='yes' />
+    <tag k='type' v='multipolygon' />
+  </relation>
 </osm>

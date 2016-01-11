@@ -15,6 +15,7 @@ public class TramDraw {
 	public boolean isFree;
 	public Style style;
 	public Color color=Color.yellow;
+	public String lastStop;
 	
 	public TramDraw(LinkedList<String> nodes, String nr){//konstruktor
 		currDraw=nodes.getFirst();	
@@ -25,6 +26,7 @@ public class TramDraw {
         style.setBackColor(color);
         style.setStroke(new BasicStroke(0));
         marker=new MapMarkerDot(null,nr,ParserXML.nodes.get(currDraw).coord,style);
+        lastStop=null;
 	}
 	public void resetDraw(LinkedList<String> nodes){// reset trasy
 		currDraw=nodes.getFirst();

@@ -43,13 +43,14 @@ public class ParserXML {
 						nodes.put(nid,pnod);
 						nodeflag=true;
 					}
-					if (qName.equalsIgnoreCase("tag")&&nodeflag==true&&
-							attributes.getValue(0).equalsIgnoreCase("name")){
-						nodes.get(nid).name=attributes.getValue(1);
+					if (qName.equalsIgnoreCase("tag")&&//nodeflag==true&&
+							attributes.getValue("k").equalsIgnoreCase("name")){
+						nodes.get(nid).name=attributes.getValue("v");
 						nodes.get(nid).stop=true;
 						nodeflag=false;
 					}
-					else nodeflag=false;
+					if (!qName.equalsIgnoreCase("node")||!qName.equalsIgnoreCase("tag"))
+						nodeflag=false;
 				}
 			};
 			saxParser.parse(file, handler);

@@ -142,13 +142,16 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
                 }
             }
         });
-
+        
+        ClockThread c=new ClockThread("src/newdata",map());
+        c.start();
+        
         JSpinner spinner1 = new JSpinner();
         SpinnerDateModel spinnermodel = new SpinnerDateModel();
         spinnermodel.setCalendarField(Calendar.MINUTE);
         spinner1.setModel(spinnermodel);
-        spinner1.setEditor(new JSpinner.DateEditor(spinner1 , "hh:mm:ss"));
-
+        spinner1.setEditor(new JSpinner.DateEditor(spinner1 , "HH:mm"));
+        
         JButton spawn = new JButton("Start");
         spawn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -158,29 +161,20 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
 //                }
 //                for(int i=0; i<ParserXML.relations.size(); i++)
 //                {
-                    DrawThread t = new DrawThread((ParserXML.relations.get("14")), map());
-                    t.start();
+//                    DrawThread t = new DrawThread((ParserXML.relations.get("14")), map());
+//                    t.start();
 
                 Calendar cal = Calendar.getInstance();
                 cal.setTime((Date) spinner1.getValue());
-
+                
                 int hours = cal.get(Calendar.HOUR_OF_DAY);
                 int minutes = cal.get(Calendar.MINUTE);
-                int ampm = cal.get(Calendar.AM_PM);
-
-                int intensity = 1; //0 - wczesnie rano i pozno w nocy; 2 - godziny szczytu; 1 - pozostale
-
-                if((hours < 6 && ampm == 0) || (hours >= 7 && ampm == 1))
-                    intensity = 0;
-
-                else if((hours >=6 && hours < 9 && ampm ==0) || (hours >= 2 && hours < 7 && ampm == 1))
-                    intensity = 2;
-
-
-
-//            	Random gen=new Random();
-//            	DrawThread t=new DrawThread(ParserXML.getRelByInt(gen.nextInt(ParserXML.relations.size()-1)),map());
-//            	t.start();
+                ClockThread.thisSec=LocalTime.of(hours, minutes);
+                
+                for(DrawThread t: c.threads){
+                	t.stop=1;
+                }
+                map().removeAllMapMarkers();
             }
         });
 
@@ -189,6 +183,7 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
 
         new DrawWays(map());//rysowanie tor�w
         this.setVisible(true);
+
     }
 
     private JMapViewer map() {

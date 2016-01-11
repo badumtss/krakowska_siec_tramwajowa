@@ -171,10 +171,10 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
                 int minutes = cal.get(Calendar.MINUTE);
                 ClockThread.thisSec=LocalTime.of(hours, minutes);
                 
-                for(DrawThread t: c.threads){
-                	t.stop=1;
-                }
-                map().removeAllMapMarkers();
+                c.stopThreads();
+                c.removeEmptythreads();
+
+                //map().removeAllMapMarkers();
             }
         });
 

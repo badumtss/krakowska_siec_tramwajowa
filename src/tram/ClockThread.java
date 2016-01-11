@@ -36,8 +36,10 @@ public class ClockThread extends Thread{
 					for(String i : schedule.schedules.keySet()){
 						for(int j=0;j<schedule.schedules.get(i).size();j++){
 							if (schedule.schedules.get(i).get(j).equals(thisSec)){
+
 								DrawThread t=new DrawThread(ParserXML.relations.get(i),map);
 				            	t.start();
+				            	threads.add(t);
 				            	break;
 							}
 							if (schedule.schedules.get(i).get(j).isAfter(thisSec)){
@@ -45,15 +47,10 @@ public class ClockThread extends Thread{
 							}
 						}
 					}
-					for(DrawThread t:threads){
-						if(!t.isAlive()){
-							threads.remove(t);
-						}
-					}
 				}
 			}
 		}catch(Exception e){
-			  System.out.print(e);
+			e.printStackTrace();
 		}
 	}
 	public int getIntensity(){
@@ -66,6 +63,24 @@ public class ClockThread extends Thread{
         else if((hours >=6 && hours < 9 ) || (hours >= 14 && hours < 19))
             intensity = 2;
         return intensity;
+	}
+	public void stopThreads(){
+        for(int i=0;i<threads.size();i++){
+       	 
+        	if(threads.get(i).isAlive())
+        		{threads.get(i).stop=1;
+        		if (threads.get(i).getState()==Thread.State.TIMED_WAITING)threads.get(i).interrupt(); }
+        	             	
+        }
+	}
+	public void removeEmptythreads(){
+		ArrayList<DrawThread> emptylist=new ArrayList<DrawThread>();
+		  for(DrawThread i : threads){
+			  if(!i.isAlive())emptylist.add(i);
+		  }
+		  for(DrawThread i : emptylist){
+			  threads.remove(i);
+		  }
 	}
 	
 }

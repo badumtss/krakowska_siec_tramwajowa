@@ -23,6 +23,7 @@ public class ParserXML {
 		relway=false;
 		readNodes(file);
 		readWays(file);
+		smoothWays();
 		readRelations(file);
 	}
 
@@ -158,5 +159,9 @@ public class ParserXML {
 	public static Way getWayByInt(int i){
 		return ways.get(ways.keySet().toArray()[i]);
 	}
-
+	public static void smoothWays(){
+		for(String i: ways.keySet()){
+			ways.get(i).smooth();
+		}
+	}
 }

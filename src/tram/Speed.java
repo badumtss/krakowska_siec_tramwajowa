@@ -6,7 +6,7 @@ public class Speed {
 	int speed=10;//m per s
 	
 	static int getDelay(double sp,Coordinate[] n1){
-		double delay=Math.ceil((distance(n1)/sp)*0.28*1000);
+		double delay=Math.ceil((distance(n1)/(sp*0.28))*1000/Interf.acc);
 		delay++;
 		return (int)delay;
 	}

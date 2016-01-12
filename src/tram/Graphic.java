@@ -8,7 +8,8 @@ import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalTime;
@@ -19,7 +20,6 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
-
 import javax.swing.text.html.parser.Parser;
 
 import org.openstreetmap.gui.jmapviewer.events.JMVCommandEvent;
@@ -94,16 +94,7 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
             }
         });
         panelBottom.add(showMapMarker);
-
-        final JCheckBox showTreeLayers = new JCheckBox("Tree Layers visible");
-        showTreeLayers.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                treeMap.setTreeVisible(showTreeLayers.isSelected());
-            }
-        });
-        panelBottom.add(showTreeLayers);
-
+        
         final JCheckBox showZoomControls = new JCheckBox("Show zoom controls");
         showZoomControls.setSelected(map().getZoomContolsVisible());
         showZoomControls.addActionListener(new ActionListener() {
@@ -176,10 +167,16 @@ public class Graphic extends JFrame implements JMapViewerEventListener  {
 
             }
         });
-
+        JComboBox<Integer> speedselector = new JComboBox<>(new Integer[]{1,2,3,10});
+        speedselector.addItemListener(new ItemListener(){
+        	public void itemStateChanged(ItemEvent e) {
+        		Interf.acc=(int)e.getItem();
+        	}
+        });
         panelBottom.add(spinner1);
         panelBottom.add(spawn);
-
+        panelBottom.add(new JLabel("Speed: "));
+        panelBottom.add(speedselector);
         new DrawWays(map());//rysowanie tor�w
         this.setVisible(true);
 

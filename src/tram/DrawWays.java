@@ -35,10 +35,10 @@ public class DrawWays {
 	public void paintway(Layer line,String id){
 		Way way=ParserXML.ways.get(id);
 		
-		for (int i = 0; i < way.nodes.size()-1; i++) {
+		for (int i = 0; i < way.nodesprint.size()-1; i++) {
 
-					Coordinate p = ParserXML.nodes.get(way.nodes.get(i)).coord;
-					Coordinate p2 = ParserXML.nodes.get(way.nodes.get(i+1)).coord;
+					Coordinate p = ParserXML.nodes.get(way.nodesprint.get(i)).coord;
+					Coordinate p2 = ParserXML.nodes.get(way.nodesprint.get(i+1)).coord;
 					List <Coordinate> list=new ArrayList <Coordinate>(Arrays.asList(p,p2,p2));
 					map.addMapPolygon(new MapPolygonImpl(line,"",list,wayStyle));
 		}			

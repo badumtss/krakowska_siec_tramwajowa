@@ -31,7 +31,7 @@ public class ClockThread extends Thread{
 				 clockLabelVal=new JLabel(String.format("%s",thisSec));
 				 panel.add(clockLabelVal);
 				 panel.updateUI();
-				Thread.sleep(1000);
+				Thread.sleep(1000/Interf.acc);
 				if (thisSec.getSecond()==0){
 					for(String i : schedule.schedules.keySet()){
 						for(int j=0;j<schedule.schedules.get(i).size();j++){

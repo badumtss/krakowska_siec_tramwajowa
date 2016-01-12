@@ -41,5 +41,5 @@ public class Relation {
 	public Coordinate[] nextDraw(int nr){
 		return drawings.get(nr).nextDraw(nodes);
 	}
-
+	
 }

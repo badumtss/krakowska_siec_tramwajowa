@@ -46,8 +46,8 @@ public class DrawThread extends Thread {
     			return 1000;
     		}
     	}*/
-    	if(checkCollision(map,rel.drawings.get(tramNr).marker,ParserXML.nodes.get(rel.nodes.get(rel.drawings.get(tramNr).currDrawIt+1)).coord))
-    		return 1000;
+    	//if(checkCollision(map,rel.drawings.get(tramNr).marker,ParserXML.nodes.get(rel.nodes.get(rel.drawings.get(tramNr).currDrawIt+1)).coord))
+    	//	return 1000;
     	if(rel.nodes.getLast().equals(rel.drawings.get(tramNr).currDraw)||stop==1){
     		
     		map.removeMapMarker(rel.drawings.get(tramNr).marker);
@@ -93,7 +93,7 @@ public class DrawThread extends Thread {
 		if (td.currDrawIt > (2*rel.nodes.size()/5)) delay=12;
 		if (td.currDrawIt > (3*rel.nodes.size()/5)) delay=10;
 		if (td.currDrawIt > (4*rel.nodes.size()/5)) delay=8;
-	   return (int)(delay+getIntensity()*(2/dist))*1000;
+	   return (int)(delay+getIntensity()*(2/dist))*1000/Interf.acc;
    }
    public synchronized boolean  checkCollision(JMapViewer map, MapMarker marker, Coordinate c){
 	   for(int i=0;i< map.getMapMarkerList().size();i++){
